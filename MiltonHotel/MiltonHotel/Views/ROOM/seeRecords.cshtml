@@ -1,0 +1,45 @@
+﻿@model IEnumerable<MiltonHotel.Models.ROOM>
+
+@{
+    ViewBag.Title = "seeRecords";
+}
+
+<h2>seeRecords</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ROOM_TYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROOM_NAME)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROOM_TYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRICE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROOM_NAME)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ROOM_NO }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ROOM_NO }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ROOM_NO })
+        </td>
+    </tr>
+}
+
+</table>
