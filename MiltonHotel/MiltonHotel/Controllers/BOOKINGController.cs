@@ -32,5 +32,17 @@ namespace MiltonHotel.Controllers
             }
             return View();
         }
+
+
+        public ActionResult book(int id)
+        {
+            Session["ROOM_NO"] = id;
+            if (Session["CID"] == null)
+            {
+                return RedirectToAction("login", "CUSTOMER");
+            }
+
+            //return View();
+        }
     }
 }
