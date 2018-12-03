@@ -12,6 +12,7 @@ namespace MiltonHotel.Models
         {
         }
 
+        public virtual DbSet<ROOM> ROOMS { get; set; }
         public virtual DbSet<BOOKING> BOOKINGs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

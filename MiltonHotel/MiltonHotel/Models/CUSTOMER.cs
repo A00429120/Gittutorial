@@ -13,12 +13,12 @@ namespace MiltonHotel.Models
         public long CID { get; set; }
 
         [Required(ErrorMessage = "The First Name should be entered")]
-        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d]*")]
+        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d\\/]*", ErrorMessage = "The name should not contain any special charectes or digits")]
         [Display(Name = "First Name")]
         public string FNAME { get; set; }
 
         [Required(ErrorMessage = "The Last name should be entered")]
-        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d]*")]
+        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d\\/]*", ErrorMessage = "The name should not contain any special charectes or digits")]
         [Display(Name = "Last Name")]
         public string LNAME { get; set; }
 
@@ -27,14 +27,14 @@ namespace MiltonHotel.Models
         public string STREET { get; set; }
 
         [Required(ErrorMessage = "The city should be entered")]
-        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d]*")]
+        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d\\/]*", ErrorMessage = "The city should not contain any special charectes or digits")]
         [Display(Name = "City")]
         [StringLength(50)]
         public string CITY { get; set; }
 
         [Required(ErrorMessage = "The State should be entered")]
         [Display(Name = "State/Province")]
-        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d]*")]
+        [RegularExpression("[^\\;\\:\\!\\@\\#\\$\\%\\^\\*\\+\\?\\<\\>\\d]*", ErrorMessage = "The State should not contain any special charectes or digits")]
         [StringLength(50)]
         public string STATE { get; set; }
 

@@ -1,16 +1,12 @@
 ﻿@model IEnumerable<MiltonHotel.Models.CARD>
 
 @{
-                /**/
-
-                ViewBag.Title = "confimCard";
+    ViewBag.Title = "confimCard";
 }
 
-<h2>confimCard</h2>
+<h2>Payment</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+
 <table class="table">
     <tr>
         <th>
@@ -29,25 +25,28 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.CREDIT_CARD_NO)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.CARD_TYPE)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.NAME_ON_CARD)
-    </td>
-    <td>
-        @Html.DisplayFor(modelItem => item.EXP_DATE)
-    </td>
-    <td>
-    </td>
-</tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CREDIT_CARD_NO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CARD_TYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NAME_ON_CARD)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EXP_DATE)
+        </td>
+        <td>
+            @Html.ActionLink("Make Paymnet using this card", "confirmBooking", "BOOKING", new { cardNo = item.CREDIT_CARD_NO }, null)
+        </td>
+    </tr>
 }
 
 </table>
+
+<center><input type="button" value="Add Card" class="btn btn-default" onclick="location.href='@Url.Action("cardDetails", "CARD" )'" /></center>
+
 

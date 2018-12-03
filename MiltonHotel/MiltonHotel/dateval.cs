@@ -14,7 +14,7 @@ namespace MiltonHotel
                             ValidationContext validationContext)
         {
             BOOKING book = (BOOKING)validationContext.ObjectInstance;
-
+            if (value == null) return new ValidationResult("Must enter value");
             DateTime toDate = (DateTime)value;
             DateTime fromDate = book.FROM_DATE;
 

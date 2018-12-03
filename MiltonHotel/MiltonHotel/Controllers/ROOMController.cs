@@ -9,9 +9,9 @@ namespace MiltonHotel.Controllers
     public class ROOMController : Controller
     {
 
-        public ActionResult seeRecords(s)
+        public ActionResult seeRecords()
         {
-            List<Models.ROOM> room = (List<Models.ROOM>) TempData["room"];
+            List<Models.ROOM> room =(List<Models.ROOM>) TempData["room"];
             return View(room);
         }
     }

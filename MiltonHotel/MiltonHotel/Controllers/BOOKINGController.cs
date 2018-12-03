@@ -22,7 +22,7 @@ namespace MiltonHotel.Controllers
         [HttpPost]
         public ActionResult findRoom(Models.BOOKING book)
         {
-            if (ModelState.IsValid)
+            if(ModelState.IsValid)
             {
                 Session["FROM_DATE"] = book.FROM_DATE;
                 Session["TO_DATE"] = book.TO_DATE;
@@ -32,8 +32,8 @@ namespace MiltonHotel.Controllers
                 List<Models.ROOM> rmz = rooms;
                 using (Models.Model3 db = new Models.Model3())
                 {
-                    List<Models.BOOKING> bookings = db.BOOKINGs.Where(u => (u.FROM_DATE <= book.TO_DATE || u.TO_DATE >= book.FROM_DATE)).ToList();
-                    foreach (Models.BOOKING bk in bookings)
+                    List<Models.BOOKING> bookings = db.BOOKINGs.Where(u => (u.FROM_DATE <= book.TO_DATE && u.TO_DATE >= book.FROM_DATE) ).ToList();
+                    foreach(Models.BOOKING bk in bookings)
                     {
                         foreach (Models.ROOM rz in rmz.ToList())
                         {
@@ -46,22 +46,63 @@ namespace MiltonHotel.Controllers
                     TempData["room"] = rooms;
                     return RedirectToAction("seeRecords", "ROOM");
                 }
-
+                
             }
             return View();
         }
 
-
-
         public ActionResult book(int id)
         {
             Session["ROOM_NO"] = id;
-            if (Session["CID"] == null)
+            if(Session["CID"] == null)
             {
                 return RedirectToAction("login", "CUSTOMER");
             }
-
+            else
+            {
+                return RedirectToAction("confimCard", "CARD");
+            }
             //return View();
+        }
+
+        public ActionResult confirmBooking(string cardNo)
+        {
+            Models.BOOKING book = new Models.BOOKING();
+                using (Models.Model3 db = new Models.Model3())
+                {
+                book.ROOM_NO = (int)Session["ROOM_NO"];
+                book.TO_DATE = (DateTime)Session["TO_DATE"];
+                book.FROM_DATE = (DateTime)Session["FROM_DATE"];
+                book.QUANTITY = (int)Session["QUANTITY"];
+                book.CID = (long)Session["CID"];
+                    db.BOOKINGs.Add(book);
+                    db.SaveChanges();
+
+                }
+
+                ModelState.Clear();
+            //API CALL TO TRANSACTION
+            Models.ROOM room = new Models.ROOM();
+            Models.CARD card = new Models.CARD();
+            using (Models.Model2 db = new Models.Model2())
+            {
+                room = db.ROOMS.FirstOrDefault(m => m.ROOM_NO == book.ROOM_NO);
+                card = db.CARDs.FirstOrDefault(m => m.CREDIT_CARD_NO == cardNo.ToString());
+                book = db.BOOKINGs.FirstOrDefault(m => m.ROOM_NO == book.ROOM_NO && m.QUANTITY == book.QUANTITY
+                && m.FROM_DATE == book.FROM_DATE && m.TO_DATE == book.TO_DATE);
+            }
+                ServiceReference1.Assignment3Client test = new ServiceReference1.Assignment3Client();
+            //TODO
+            test.create(book.BOOKING_NO.ToString(), cardNo.ToString(),card.EXP_DATE,Session["FNAME"]+ " "+ Session["LNAME"],
+                room.PRICE.ToString(),((book.TO_DATE-book.FROM_DATE).TotalDays+1).ToString());
+
+            Session["ROOM_NO"] = null;
+            Session["FROM_DATE"] = null;
+            Session["TO_DATE"] = null;
+            Session["QUANTITY"] = null;
+            TempData["booking_success"] = "The room No.:"+ book.ROOM_NO+" has been booked";
+                return RedirectToAction("findRoom");
+
         }
 
         public ActionResult showBookings()
@@ -80,17 +121,23 @@ namespace MiltonHotel.Controllers
             using (Models.Model2 db = new Models.Model2())
             {
                 Models.BOOKING obj = db.BOOKINGs.Where(m => m.BOOKING_NO == id && m.FROM_DATE > DateTime.Now).FirstOrDefault();
-                if (obj != null)
+                if(obj != null)
                 {
                     db.BOOKINGs.Remove(obj);
                     db.SaveChanges();
                     TempData["deleted"] = "Booking deleted successfuly";
 
+                    ServiceReference1.Assignment3Client test = new ServiceReference1.Assignment3Client();
+
+                    test.remove(id.ToString());
+                }
+                else
+                {
+                    TempData["deleted"] = "It is not possible to delete bookings older than Today";
                 }
                 return RedirectToAction("showBookings");
             }
         }
-
 
     }
 }

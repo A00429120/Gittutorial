@@ -26,5 +26,8 @@ namespace MiltonHotel.Models
         [Display(Name = "Room Name")]
         public string ROOM_NAME { get; set; }
 
+        //public virtual ROOM ROOMS1 { get; set; }
+
+        //public virtual ROOM ROOM1 { get; set; }
     }
 }

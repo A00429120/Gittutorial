@@ -1,48 +1,40 @@
 ﻿@model IEnumerable<MiltonHotel.Models.ROOM>
 
-    @{
+@{
+    ViewBag.Title = "seeRecords";
+}
 
-        ViewBag.Title = "seeRecords";
+<h2>Book Room</h2>
 
-    }
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ROOM_TYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PRICE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ROOM_NAME)
+        </th>
+        <th></th>
+    </tr>
 
-    <h2>seeRecords</h2>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROOM_TYPE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRICE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ROOM_NAME)
+        </td>
+        <td>
+            @Html.ActionLink("Book", "book", "BOOKING", new { id=item.ROOM_NO }, null) 
+        </td>
+    </tr>
+}
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.ROOM_TYPE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.PRICE)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ROOM_NAME)
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ROOM_TYPE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.PRICE)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ROOM_NAME)
-                </td>
-                <td>
-                    @Html.ActionLink("Book", "book", "BOOKING", new { id = item.ROOM_NO }, null)
-                </td>
-            </tr>
-
-        }
-
-    </table>
+</table>

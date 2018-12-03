@@ -10,6 +10,7 @@ namespace MiltonHotel
                             ValidationContext validationContext)
         {
             CARD card = (CARD)validationContext.ObjectInstance;
+            if(value == null) return new ValidationResult("Must enter value");
             string str = value.ToString();
 
             string type = card.CARD_TYPE;

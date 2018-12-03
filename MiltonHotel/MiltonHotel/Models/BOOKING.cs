@@ -17,7 +17,7 @@ namespace MiltonHotel.Models
         public int ROOM_NO { get; set; }
 
         [Display(Name = "No. of Guests")]
-        [Range(1, 10, ErrorMessage = "the number of customers must be more than 0 and less than 10")]
+        [Range(1,10,ErrorMessage ="the number of customers must be more than 0 and less than 10")]
         [Required(ErrorMessage = "The number of guests should be enterd")]
         public int QUANTITY { get; set; }
 

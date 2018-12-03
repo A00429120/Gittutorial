@@ -45,7 +45,7 @@ namespace MiltonHotel.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string MAIL, string password)
+        public ActionResult Login(string MAIL,string password)
         {
             using (Models.Model1 db = new Models.Model1())
             {
@@ -56,9 +56,11 @@ namespace MiltonHotel.Controllers
                     Session["MAIL"] = usr.MAIL.ToString();
                     Session["FNAME"] = usr.FNAME.ToString();
                     Session["LNAME"] = usr.LNAME.ToString();
-
+                    if (Session["ROOM_NO"] == null)
+                    {
                         return RedirectToAction("findRoom", "BOOKING");
-
+                    }
+                    return RedirectToAction("confimCard", "CARD");
                 }
                 else
                 {
@@ -67,7 +69,6 @@ namespace MiltonHotel.Controllers
             }
             return View();
         }
-
 
         public ActionResult LoggedOn()
         {
@@ -79,7 +80,7 @@ namespace MiltonHotel.Controllers
             {
                 return RedirectToAction("Login");
             }
-        
+
         }
 
         public ActionResult LogOff()

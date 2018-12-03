@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:intf="http://service.web.com.assignment3" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:impl="http://service.web.com.assignment3" targetNamespace="http://service.web.com.assignment3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://service.web.com.assignment3">
+      <xsd:element name="remove">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="removeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="removeReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="get">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="update">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="choice" type="xsd:string" />
+            <xsd:element name="value" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="updateResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="updateReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="create">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="id" type="xsd:string" />
+            <xsd:element name="cardNumber" type="xsd:string" />
+            <xsd:element name="expDate" type="xsd:string" />
+            <xsd:element name="nameOnCard" type="xsd:string" />
+            <xsd:element name="unitPrice" type="xsd:string" />
+            <xsd:element name="quantity" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="createResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="createReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="getAll">
+        <xsd:complexType />
+      </xsd:element>
+      <xsd:element name="getAllResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="getAllReturn" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="updateRequest">
+    <wsdl:part name="parameters" element="impl:update" />
+  </wsdl:message>
+  <wsdl:message name="getRequest">
+    <wsdl:part name="parameters" element="impl:get" />
+  </wsdl:message>
+  <wsdl:message name="createRequest">
+    <wsdl:part name="parameters" element="impl:create" />
+  </wsdl:message>
+  <wsdl:message name="getResponse">
+    <wsdl:part name="parameters" element="impl:getResponse" />
+  </wsdl:message>
+  <wsdl:message name="getAllResponse">
+    <wsdl:part name="parameters" element="impl:getAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeResponse">
+    <wsdl:part name="parameters" element="impl:removeResponse" />
+  </wsdl:message>
+  <wsdl:message name="createResponse">
+    <wsdl:part name="parameters" element="impl:createResponse" />
+  </wsdl:message>
+  <wsdl:message name="removeRequest">
+    <wsdl:part name="parameters" element="impl:remove" />
+  </wsdl:message>
+  <wsdl:message name="getAllRequest">
+    <wsdl:part name="parameters" element="impl:getAll" />
+  </wsdl:message>
+  <wsdl:message name="updateResponse">
+    <wsdl:part name="parameters" element="impl:updateResponse" />
+  </wsdl:message>
+  <wsdl:portType name="Assignment3">
+    <wsdl:operation name="remove">
+      <wsdl:input name="removeRequest" message="impl:removeRequest" />
+      <wsdl:output name="removeResponse" message="impl:removeResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <wsdl:input name="getRequest" message="impl:getRequest" />
+      <wsdl:output name="getResponse" message="impl:getResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdl:input name="updateRequest" message="impl:updateRequest" />
+      <wsdl:output name="updateResponse" message="impl:updateResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdl:input name="createRequest" message="impl:createRequest" />
+      <wsdl:output name="createResponse" message="impl:createResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="getAll">
+      <wsdl:input name="getAllRequest" message="impl:getAllRequest" />
+      <wsdl:output name="getAllResponse" message="impl:getAllResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="Assignment3SoapBinding" type="impl:Assignment3">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="remove">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="removeRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="removeResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="get">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="update">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="updateRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="updateResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="create">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="createRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="createResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getAll">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="getAllRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="getAllResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Assignment3Service">
+    <wsdl:port name="Assignment3" binding="impl:Assignment3SoapBinding">
+      <wsdlsoap:address location="http://localhost:8080/Assignment_3/services/Assignment3" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

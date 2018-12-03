@@ -10,6 +10,7 @@ namespace MiltonHotel
                             ValidationContext validationContext)
         {
             CUSTOMER cust = (CUSTOMER)validationContext.ObjectInstance;
+            if(value == null) return new ValidationResult("Must enter value");
             string str = value.ToString();
 
             string country = cust.COUNTRY;

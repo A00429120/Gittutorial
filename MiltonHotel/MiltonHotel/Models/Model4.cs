@@ -1,4 +1,4 @@
-﻿namespace MiltonHotel.Models
+namespace MiltonHotel.Models
 {
     using System;
     using System.Data.Entity;

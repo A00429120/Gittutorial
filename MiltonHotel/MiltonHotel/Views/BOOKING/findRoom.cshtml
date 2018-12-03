@@ -4,31 +4,21 @@
     ViewBag.Title = "findRoom";
 }
 
-<h2>findRoom</h2>
+<h2>Find a Room:</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>BOOKING</h4>
+        @if (TempData["booking_success"] != null)
+        {
+           <div class="alert alert-success"><strong> @TempData["booking_success"] </strong></div>
+           @TempData["booking_success"] = null;
+        }
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.ROOM_NO, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ROOM_NO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ROOM_NO, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.BOOKING_NO, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BOOKING_NO, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BOOKING_NO, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.QUANTITY, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -54,22 +44,19 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.BOOKED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BOOKED_DATE, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BOOKED_DATE, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Book" class="btn btn-default" />
+                @if (Session["CID"] != null)
+                {
+                        <input type="button" value="Show Booking history" class="btn btn-primary" onclick="location.href='@Url.Action("showBookings", "BOOKING" )'" />
+                }
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+    
+
