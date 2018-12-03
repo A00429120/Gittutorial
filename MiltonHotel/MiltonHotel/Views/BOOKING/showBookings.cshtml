@@ -1,0 +1,64 @@
+﻿@model IEnumerable<MiltonHotel.Models.BOOKING>
+
+@{
+    ViewBag.Title = "showBookings";
+}
+
+<h2>Booking History</h2>
+
+@if (TempData["deleted"] != null)
+{
+    <div class="alert alert-warning">@TempData["deleted"]</div>
+    @TempData["deleted"] = null;
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ROOM_NO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QUANTITY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FROM_DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TO_DATE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BOOKED_DATE)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ROOM_NO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QUANTITY)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FROM_DATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TO_DATE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BOOKED_DATE)
+            </td>
+            <td>
+
+                @Html.ActionLink("Delete", "deleteBooking", new { id = item.BOOKING_NO })
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    <input type="button" value="back to find room" class="btn btn-default" onclick="location.href='@Url.Action("findRoom", "BOOKING" )'" />
+</p>

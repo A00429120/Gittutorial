@@ -64,5 +64,33 @@ namespace MiltonHotel.Controllers
             //return View();
         }
 
+        public ActionResult showBookings()
+        {
+            List<Models.BOOKING> bookings = new List<Models.BOOKING>();
+            long cid = (long)Session["CID"];
+            using (Models.Model2 db = new Models.Model2())
+            {
+                bookings = db.BOOKINGs.Where(m => m.CID == cid).ToList();
+                return View(bookings);
+            }
+        }
+
+        public ActionResult deleteBooking(int id)
+        {
+            using (Models.Model2 db = new Models.Model2())
+            {
+                Models.BOOKING obj = db.BOOKINGs.Where(m => m.BOOKING_NO == id && m.FROM_DATE > DateTime.Now).FirstOrDefault();
+                if (obj != null)
+                {
+                    db.BOOKINGs.Remove(obj);
+                    db.SaveChanges();
+                    TempData["deleted"] = "Booking deleted successfuly";
+
+                }
+                return RedirectToAction("showBookings");
+            }
+        }
+
+
     }
 }
