@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MiltonHotel.Models.CARD>
+
+@{
+                /**/
+
+                ViewBag.Title = "confimCard";
+}
+
+<h2>confimCard</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CREDIT_CARD_NO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CARD_TYPE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NAME_ON_CARD)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EXP_DATE)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.CREDIT_CARD_NO)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CARD_TYPE)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.NAME_ON_CARD)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.EXP_DATE)
+    </td>
+    <td>
+    </td>
+</tr>
+}
+
+</table>
+

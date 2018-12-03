@@ -168,11 +168,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="cardval.cs" />
     <Compile Include="Controllers\BOOKINGController.cs" />
+    <Compile Include="Controllers\CARDController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ROOMController.cs" />
     <Compile Include="dateval.cs" />
     <Compile Include="Models\BOOKING.cs" />
+    <Compile Include="Models\CARD.cs" />
     <Compile Include="Models\CUSTOMER.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -235,6 +238,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\CARD\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
