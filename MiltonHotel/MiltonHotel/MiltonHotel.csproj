@@ -184,6 +184,7 @@
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\Model2.cs" />
     <Compile Include="Models\Model3.cs" />
+    <Compile Include="Models\Model4.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\ROOM.cs" />
     <Compile Include="postalval.cs" />
@@ -235,10 +236,10 @@
     <Content Include="Views\ROOM\seeRecords.cshtml" />
     <Content Include="Views\BOOKING\findRoom.cshtml" />
     <Content Include="Views\ROOM\findRoom.cshtml" />
+    <Content Include="Views\CARD\confimCard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CARD\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
