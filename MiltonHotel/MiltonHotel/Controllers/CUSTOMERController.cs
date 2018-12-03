@@ -79,7 +79,13 @@ namespace MiltonHotel.Controllers
             {
                 return RedirectToAction("Login");
             }
+        
+        }
 
+        public ActionResult LogOff()
+        {
+            Session.Clear();
+            return RedirectToAction("Login");
         }
     }
 }
