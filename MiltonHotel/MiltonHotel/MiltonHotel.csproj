@@ -231,6 +231,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\ROOM\seeRecords.cshtml" />
     <Content Include="Views\BOOKING\findRoom.cshtml" />
+    <Content Include="Views\ROOM\findRoom.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

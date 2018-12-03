@@ -45,26 +45,29 @@ namespace MiltonHotel.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(Models.CUSTOMER user)
+        public ActionResult Login(string MAIL, string password)
         {
             using (Models.Model1 db = new Models.Model1())
             {
-                var usr = db.CUSTOMERs.FirstOrDefault(u => u.MAIL == user.MAIL && u.PASSWORD == user.PASSWORD);
+                var usr = db.CUSTOMERs.FirstOrDefault(u => u.MAIL == MAIL && u.PASSWORD == password);
                 if (usr != null)
                 {
-                    Session["CID"] = usr.CID.ToString();
+                    Session["CID"] = usr.CID;
                     Session["MAIL"] = usr.MAIL.ToString();
                     Session["FNAME"] = usr.FNAME.ToString();
                     Session["LNAME"] = usr.LNAME.ToString();
-                    return RedirectToAction("LoggedOn");
+
+                        return RedirectToAction("findRoom", "BOOKING");
+
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Username or password is wrong");
+                    ModelState.AddModelError("", "Username or password is wrong please login");
                 }
             }
             return View();
         }
+
 
         public ActionResult LoggedOn()
         {
