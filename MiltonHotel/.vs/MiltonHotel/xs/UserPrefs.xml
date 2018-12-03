@@ -1,11 +1,11 @@
 ﻿<Properties StartupConfiguration="{066F6628-9686-4C33-A9DE-FED5211A1504}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="MiltonHotel/Controllers/BOOKINGController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MiltonHotel/Views/CARD/cardDetails.cshtml">
     <Files>
-      <File FileName="MiltonHotel/Controllers/CUSTOMERController.cs" Line="22" Column="19" />
-      <File FileName="MiltonHotel/Models/ROOM.cs" Line="28" Column="9" />
+      <File FileName="MiltonHotel/Models/ROOM.cs" Line="28" Column="1" />
       <File FileName="MiltonHotel/Controllers/ROOMController.cs" Line="5" Column="22" />
-      <File FileName="MiltonHotel/Views/ROOM/seeRecords.cshtml" Line="49" Column="1" />
-      <File FileName="MiltonHotel/Controllers/BOOKINGController.cs" Line="34" Column="10" />
+      <File FileName="MiltonHotel/Views/ROOM/seeRecords.cshtml" Line="49" Column="5" />
+      <File FileName="MiltonHotel/Controllers/CARDController.cs" Line="25" Column="1" />
+      <File FileName="MiltonHotel/Views/CARD/cardDetails.cshtml" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

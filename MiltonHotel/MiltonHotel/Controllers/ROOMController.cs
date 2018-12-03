@@ -8,18 +8,11 @@ namespace MiltonHotel.Controllers
 {
     public class ROOMController : Controller
     {
-        private Models.Model2 db = new Models.Model2();
-        // GET: ROOM
-        public ActionResult seeRecords()
-        {
-            return View(db.ROOMS.ToList());
-        }
 
-        [HttpPost]
-        public ActionResult seeRecords(Models.ROOM room)
+        public ActionResult seeRecords(s)
         {
-            
-            return View(db.ROOMS.ToList());
+            List<Models.ROOM> room = (List<Models.ROOM>) TempData["room"];
+            return View(room);
         }
     }
 }
