@@ -17,15 +17,15 @@ namespace MiltonHotel
 
             if (!IsVisa(str) && type == "Visa")
             {
-                return new ValidationResult("Invalid Visa Card No.");
+                return new ValidationResult("Invalid Visa Card No. should start with 4 and be 16 digits long");
             }
             else if (!IsAmex(str) && type == "American Express")
             {
-                return new ValidationResult("Invalid American Express Card No.");
+                return new ValidationResult("Invalid American Express Card No. should start with 34/37 and should be 15 digits long");
             }
             else if (!IsMaster(str) && type == "Master Card")
             {
-                return new ValidationResult("Invalid Master Card No.");
+                return new ValidationResult("Invalid Master Card No. should start with 51-55 and should be 16 digits long");
             }
             return ValidationResult.Success;
         }

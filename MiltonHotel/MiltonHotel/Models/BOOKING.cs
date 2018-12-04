@@ -18,7 +18,7 @@ namespace MiltonHotel.Models
 
         [Display(Name = "No. of Guests")]
         [Range(1,10,ErrorMessage ="the number of customers must be more than 0 and less than 10")]
-        [Required(ErrorMessage = "The number of guests should be enterd")]
+        [Required(ErrorMessage = "The number of guests should be entered")]
         public int QUANTITY { get; set; }
 
         [Column(TypeName = "date")]
