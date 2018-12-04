@@ -27,9 +27,18 @@ namespace MiltonHotel.Controllers
             {
                 using (Model4 db = new Model4())
                 {
-                    card.CID = (long) Session["CID"];
-                    db.CARDs.Add(card);
-                    db.SaveChanges();
+                    try
+                    {
+                        card.CID = (long)Session["CID"];
+                        db.CARDs.Add(card);
+                        db.SaveChanges();
+                    }
+                    catch
+                    {
+                        TempData["err"] = "Card number already exists please enter a new one";
+                        return RedirectToAction("cardDetails", "CARD");
+                    }
+
 
                 }
 
@@ -43,10 +52,28 @@ namespace MiltonHotel.Controllers
         public ActionResult confimCard()
         {
             List<CARD> card = new List<CARD>();
+            long cust = (long)Session["CID"];
             using (Model4 db = new Model4())
             {
-               card = db.CARDs.ToList();
+                card = db.CARDs.Where(m => m.CID == cust).ToList();
                 return View(card);
+            }
+        }
+
+        public ActionResult deleteCard(string cardNo)
+        {
+            using (Models.Model2 db = new Models.Model2())
+            {
+                Models.CARD obj = db.CARDs.Where(m => m.CREDIT_CARD_NO == cardNo).FirstOrDefault();
+                if (obj != null)
+                {
+                    db.CARDs.Remove(obj);
+                    db.SaveChanges();
+
+                    TempData["deleted_card"] = "Card deleted successfuly";
+                }
+
+                return RedirectToAction("confimCard", "CARD");
             }
         }
     }
