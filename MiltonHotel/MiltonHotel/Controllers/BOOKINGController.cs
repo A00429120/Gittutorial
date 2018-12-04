@@ -96,6 +96,9 @@ namespace MiltonHotel.Controllers
             string responce = test.create(book.BOOKING_NO.ToString(), cardNo.ToString(),card.EXP_DATE,Session["FNAME"]+ " "+ Session["LNAME"],
                 room.PRICE.ToString(),((book.TO_DATE-book.FROM_DATE).TotalDays+1).ToString());
 
+            TempData["room_details"] = "Room No : "+ book.ROOM_NO +"\nCheck-in Date : "+book.FROM_DATE+"\nCheck-out Date: "
+                +book.TO_DATE+"\nTotal Price : "+ ((book.TO_DATE - book.FROM_DATE).TotalDays + 1) * room.PRICE;
+
             Session["ROOM_NO"] = null;
             Session["FROM_DATE"] = null;
             Session["TO_DATE"] = null;
@@ -120,8 +123,8 @@ namespace MiltonHotel.Controllers
         {
             using (Models.Model2 db = new Models.Model2())
             {
-                Models.BOOKING obj = db.BOOKINGs.Where(m => m.BOOKING_NO == id && m.FROM_DATE > DateTime.Now).FirstOrDefault();
-                if(obj != null)
+                Models.BOOKING obj = db.BOOKINGs.Where(m => m.BOOKING_NO == id).FirstOrDefault();
+                if(obj != null && obj.FROM_DATE > DateTime.Now)
                 {
                     db.BOOKINGs.Remove(obj);
                     db.SaveChanges();

@@ -6,6 +6,10 @@
 
 <h2>Payment</h2>
 
+@if (TempData["deleted_card"] != null)
+{
+    <div class="alert alert-warning"><Strong>@TempData["deleted_card"]</Strong>></div>
+}
 
 <table class="table">
     <tr>
@@ -25,25 +29,27 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CREDIT_CARD_NO)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CARD_TYPE)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NAME_ON_CARD)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EXP_DATE)
-        </td>
-        <td>
-            @Html.ActionLink("Make Paymnet using this card", "confirmBooking", "BOOKING", new { cardNo = item.CREDIT_CARD_NO }, null)
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CREDIT_CARD_NO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CARD_TYPE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME_ON_CARD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EXP_DATE)
+            </td>
+            <td>
+                @Html.ActionLink("Make Paymnet using this card", "confirmBooking", "BOOKING", new { cardNo = item.CREDIT_CARD_NO }, null) |
+                @Html.ActionLink("Delete this card", "deleteCard", "CARD", new { cardNo = item.CREDIT_CARD_NO }, null)
+            </td>
+        </tr>
+    }
 
 </table>
 
