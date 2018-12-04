@@ -46,10 +46,10 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Book" class="btn btn-default" />
+                <input type="submit" value="Find room" class="btn btn-primary" />
                 @if (Session["CID"] != null)
                 {
-                        <input type="button" value="Show Booking history" class="btn btn-primary" onclick="location.href='@Url.Action("showBookings", "BOOKING" )'" />
+                        <input type="button" value="Show Booking history" class="btn btn-default" onclick="location.href='@Url.Action("showBookings", "BOOKING" )'" />
                 }
             </div>
         </div>
