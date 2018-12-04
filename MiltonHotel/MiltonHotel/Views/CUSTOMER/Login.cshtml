@@ -17,7 +17,6 @@
     @if (TempData["Success"] != null)
     {
         <div class="alert alert-success"><strong> @TempData["Success"] </strong></div>
-        @TempData["Success"] = null;
     }
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
