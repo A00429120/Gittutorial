@@ -93,14 +93,14 @@ namespace MiltonHotel.Controllers
             }
                 ServiceReference1.Assignment3Client test = new ServiceReference1.Assignment3Client();
             //TODO
-            test.create(book.BOOKING_NO.ToString(), cardNo.ToString(),card.EXP_DATE,Session["FNAME"]+ " "+ Session["LNAME"],
+            string responce = test.create(book.BOOKING_NO.ToString(), cardNo.ToString(),card.EXP_DATE,Session["FNAME"]+ " "+ Session["LNAME"],
                 room.PRICE.ToString(),((book.TO_DATE-book.FROM_DATE).TotalDays+1).ToString());
 
             Session["ROOM_NO"] = null;
             Session["FROM_DATE"] = null;
             Session["TO_DATE"] = null;
             Session["QUANTITY"] = null;
-            TempData["booking_success"] = "The room No.:"+ book.ROOM_NO+" has been booked";
+            TempData["booking_success"] = "Payment responce: "+responce+" The room No.:"+ book.ROOM_NO+" has been booked";
                 return RedirectToAction("findRoom");
 
         }
@@ -125,11 +125,12 @@ namespace MiltonHotel.Controllers
                 {
                     db.BOOKINGs.Remove(obj);
                     db.SaveChanges();
-                    TempData["deleted"] = "Booking deleted successfuly";
 
                     ServiceReference1.Assignment3Client test = new ServiceReference1.Assignment3Client();
 
-                    test.remove(id.ToString());
+                    string responce = test.remove(id.ToString());
+
+                    TempData["deleted"] = "Payment responce: " + responce + " Booking deleted successfuly";
                 }
                 else
                 {
