@@ -30,7 +30,7 @@ namespace MiltonHotel.Models
         //[DataType(DataType.Date)]
         [Required(ErrorMessage = "The Expiry date should be entered")]
         [Display(Name = "Expiry Date")]
-        [RegularExpression("^(0[1-9]|1[0-2])/20(1[6-9]|2[0-9]|3[0-1])$")]
+        [RegularExpression("^(0[1-9]|1[0-2])/20(1[6-9]|2[0-9]|3[0-1])$", ErrorMessage = "The Expiry date should be in the format MM/YYYY with years starting from 2016 to 2032 both inclusive")]
         public string EXP_DATE { get; set; }
 
         public long CID { get; set; }
