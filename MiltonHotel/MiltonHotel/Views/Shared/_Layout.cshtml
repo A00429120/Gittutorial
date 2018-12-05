@@ -7,7 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
-<body style="background-image:url(https://i.imgur.com/gayaVwS.jpg)">
+<body>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -21,18 +21,12 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "findRoom", "BOOKING")</li>
-                    @if (Session["CID"] != null)
-                    {
-                        <li>@Html.ActionLink("Manage Cards", "confimCard", "CARD")</li>
-                        <li>@Html.ActionLink("Booking History", "showBookings", "BOOKING")</li>
-
-                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content" style="background-color:whitesmoke">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>

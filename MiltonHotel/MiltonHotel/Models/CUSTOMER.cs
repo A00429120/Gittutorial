@@ -64,7 +64,6 @@ namespace MiltonHotel.Models
 
         [Required(ErrorMessage = "The password should be entered")]
         [Display(Name = "Password")]
-        [RegularExpression(".{8,}", ErrorMessage = "The password must atleast be 8 letters long")]
         [DataType(DataType.Password)]
         [StringLength(50)]
         public string PASSWORD { get; set; }
