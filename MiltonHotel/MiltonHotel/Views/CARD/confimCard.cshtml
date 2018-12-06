@@ -49,7 +49,7 @@
                 {
                     @Html.ActionLink("Make Paymnet using this card", "confirmBooking", "BOOKING", new { cardNo = item.CREDIT_CARD_NO }, null) 
                 }
-                @Html.ActionLink("Delete this card", "deleteCard", "CARD", new { cardNo = item.CREDIT_CARD_NO }, null)
+               | @Html.ActionLink("Delete this card", "deleteCard", "CARD", new { cardNo = item.CREDIT_CARD_NO }, null)
             </td>
         </tr>
     }

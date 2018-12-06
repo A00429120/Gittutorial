@@ -40,7 +40,7 @@ namespace MiltonHotel
         private bool IsAmex(string cardno)
         {
             bool isAmex = false;
-            string pattern = "^3(4|7)\\\\d{13}$";
+            string pattern = "^3(4|7)\\d{13}$";
             Regex regex = new Regex(pattern);
             return isAmex = regex.IsMatch(cardno);
         }
